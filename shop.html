@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gearvaly - Shop Now</title>
+    
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Load Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Custom Styles -->
+    <style>
+        :root {
+            /* Brand colors from your brief */
+            --color-primary: #0A2342;
+            --color-accent: #00D4FF;
+            --color-neutral-light: #F2F4F8;
+            --color-neutral-dark: #1E1E1E;
+
+            /* Font stacks from your brief */
+            --font-heading: "Montserrat", system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+            --font-body: "Poppins", system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+        }
+
+        /* Apply base fonts */
+        body {
+            font-family: var(--font-body);
+            color: var(--color-neutral-dark);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Apply heading font */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
+        }
+
+        /* Utility class for primary color */
+        .bg-primary { background-color: var(--color-primary); }
+        .text-primary { color: var(--color-primary); }
+        .border-primary { border-color: var(--color-primary); }
+        
+        /* Utility class for accent color */
+        .bg-accent { background-color: var(--color-accent); }
+        .text-accent { color: var(--color-accent); }
+        .border-accent { border-color: var(--color-accent); }
+
+        /* Utility class for light neutral */
+        .bg-neutral-light { background-color: var(--color-neutral-light); }
+        
+        /* Utility class for dark neutral */
+        .bg-neutral-dark { background-color: var(--color-neutral-dark); }
+        .text-neutral-dark { color: var(--color-neutral-dark); }
+
+        /* Custom form styles for filters */
+        .filter-checkbox {
+            accent-color: var(--color-primary);
+        }
+        .filter-radio {
+            accent-color: var(--color-primary);
+        }
+    </style>
+</head>
+<body class="bg-white">
+
+    <!-- 
+      Header (Copied from homepage)
+    -->
+    <header class="sticky top-0 z-50 shadow-md bg-primary" style="font-family: var(--font-body);">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-20">
+          
+          <!-- Logo -->
+          <a href="/" class="flex-shrink-0 flex items-center">
+            <!-- Gearvaly Logo SVG -->
+            <svg class="w-8 h-8" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="20" cy="20" r="18" fill="var(--color-accent)"/>
+              <path d="M20 13.333V20H26.667M20 20L15.417 29.167L10.833 20L15.417 10.833L20 20Z" stroke="var(--color-primary)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M20 20L24.583 29.167L29.167 20L24.583 10.833L20 20Z" stroke="var(--color-primary)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span class="text-white text-2xl ml-3" style="font-family: var(--font-heading);">
+              Gearvaly
+            </span>
+          </a>
+
+          <!-- Desktop Search & Nav -->
+          <div class="hidden lg:flex lg:flex-1 lg:items-center lg:justify-center lg:space-x-8">
+            <!-- Search Bar -->
+            <div class="relative w-full max-w-lg">
+              <input
+                type="search"
+                placeholder="Search products..."
+                class="w-full bg-white/20 text-white placeholder-gray-300 rounded-full py-2.5 px-5 leading-tight focus:outline-none focus:ring-2"
+                style="border-color: var(--color-accent); ring-color: var(--color-accent);"
+              />
+              <div class="absolute right-0 top-0 mt-2.5 mr-4">
+                <!-- Search Icon -->
+                <svg class="text-gray-300 w-5 h-5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              </div>
+            </div>
+            
+            <!-- Categories Dropdown -->
+            <nav class="flex space-x-6">
+              <a href="/categories/gadgets" class="text-gray-300 hover:text-white transition-colors">Gadgets</a>
+              <a href="/categories/smart-home" class="text-gray-300 hover:text-white transition-colors">Smart Home</a>
+              <a href="/categories/audio" class="text-gray-300 hover:text-white transition-colors">Audio</a>
+              <a href="/categories/accessories" class="text-gray-300 hover:text-white transition-colors">Accessories</a>
+            </nav>
+          </div>
+
+          <!-- Icons (Desktop) -->
+          <div class="hidden lg:flex items-center space-x-6">
+            <a href="/account" aria-label="My Account" class="text-gray-300 hover:text-white transition-colors">
+              <!-- User Icon -->
+              <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+            </a>
+            <a href="/cart" aria-label="My Cart" class="relative text-gray-300 hover:text-white transition-colors">
+              <!-- Shopping Cart Icon -->
+              <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+              <span 
+                class="absolute -top-2 -right-2 w-5 h-5 rounded-full text-xs font-bold flex items-center justify-center bg-accent text-primary">
+                3
+              </span>
+            </a>
+          </div>
+
+          <!-- Mobile Menu Button -->
+          <div class="lg:hidden">
+            <button 
+              id="mobile-menu-open-btn"
+              aria-label="Open menu" 
+              class="text-gray-300 hover:text-white"
+            >
+              <!-- Menu Icon -->
+              <svg class="w-7 h-7" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div 
+        id="mobile-menu-overlay"
+        class="fixed inset-0 z-50 bg-black/50 transition-opacity duration-300 lg:hidden hidden"
+      ></div>
+      <div 
+        id="mobile-menu-panel"
+        class="fixed top-0 right-0 h-full w-4/5 max-w-sm shadow-xl transition-transform duration-300 transform translate-x-full bg-primary lg:hidden"
+      >
+        <div class="flex justify-between items-center p-6 border-b" style="border-color: rgba(255,255,255,0.1);">
+          <span class="text-white text-xl" style="font-family: var(--font-heading);">Menu</span>
+          <button id="mobile-menu-close-btn" aria-label="Close menu" class="text-gray-300 hover:text-white">
+            <!-- X Icon -->
+            <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          </button>
+        </div>
+        <div class="p-6">
+          <div class="relative mb-6">
+            <input
+              type="search"
+              placeholder="Search products..."
+              class="w-full bg-white/20 text-white placeholder-gray-300 rounded-full py-2.5 px-5 leading-tight focus:outline-none focus:ring-2"
+              style="border-color: var(--color-accent); ring-color: var(--color-accent);"
+            />
+            <div class="absolute right-0 top-0 mt-2.5 mr-4">
+              <svg class="text-gray-300 w-5 h-5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            </div>
+          </div>
+          <nav class="flex flex-col space-y-4 mb-6">
+            <a href="/categories/gadgets" class="text-gray-200 hover:text-white text-lg py-2">Gadgets</a>
+            <a href="/categories/smart-home" class="text-gray-200 hover:text-white text-lg py-2">Smart Home</a>
+            <a href="/categories/audio" class="text-gray-200 hover:text-white text-lg py-2">Audio</a>
+            <a href="/categories/accessories" class="text-gray-200 hover:text-white text-lg py-2">Accessories</a>
+          </nav>
+          <div class="flex flex-col space-y-4 border-t pt-6" style="border-color: rgba(255,255,255,0.1);">
+             <a href="/account" class="flex items-center text-gray-200 hover:text-white text-lg py-2">
+               <svg class="w-6 h-6 mr-3" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+               My Account
+             </a>
+             <a href="/cart" class="flex items-center text-gray-200 hover:text-white text-lg py-2">
+               <svg class="w-6 h-6 mr-3" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+               My Cart (3)
+             </a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            
+            <!-- Page Title -->
+            <h1 class="text-4xl font-extrabold text-primary mb-8">Shop Now</h1>
+
+            <!-- Controls: Filter Toggle (Mobile) + Sort By -->
+            <div class="flex justify-between items-center mb-6">
+                <!-- Mobile Filter Button -->
+                <button id="filter-toggle-btn" class="lg:hidden flex items-center px-4 py-2 border border-gray-300 rounded-lg text-neutral-dark font-semibold">
+                    <!-- Filter Icon -->
+                    <svg class="w-5 h-5 mr-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon></svg>
+                    Filters
+                </button>
+
+                <!-- Sort By Dropdown -->
+                <div class="flex items-center ml-auto">
+                    <label for="sort-by" class="text-sm text-gray-600 mr-2">Sort by:</label>
+                    <select id="sort-by" class="rounded-lg border-gray-300 focus:border-primary focus:ring-primary" style="font-family: var(--font-body);">
+                        <option value="featured">Featured</option>
+                        <option value="price-asc">Price: Low to High</option>
+                        <option value="price-desc">Price: High to Low</option>
+                        <option value="rating">Average Rating</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Main Content: Filters + Product Grid -->
+            <div class="flex flex-col lg:flex-row lg:gap-8">
+                
+                <!-- 
+                  Filter Sidebar (based on components.filters)
+                  Hidden on mobile, toggled by JS
+                -->
+                <aside id="filter-sidebar" class="hidden lg:block w-full lg:w-1/4 xl:w-1/5 mb-8 lg:mb-0">
+                    <div class="space-y-6">
+                        
+                        <!-- Filter Group: Price Range -->
+                        <div>
+                            <h3 class="text-xl font-semibold text-primary mb-4">Price Range</h3>
+                            <input type="range" min="0" max="1000" value="500" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer" style="accent-color: var(--color-primary);" id="price-range-slider">
+                            <div class="flex justify-between text-sm text-gray-600 mt-2">
+                                <span>$0</span>
+                                <span id="price-range-value">$500</span>
+                            </div>
+                        </div>
+
+                        <!-- Filter Group: Brand -->
+                        <div>
+                            <h3 class="text-xl font-semibold text-primary mb-4">Brand</h3>
+                            <div class="space-y-2">
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="filter-checkbox h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary">
+                                    <span class="ml-2 text-gray-700">Aura</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="filter-checkbox h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary">
+                                    <span class="ml-2 text-gray-700">Nebula</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="filter-checkbox h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary">
+                                    <span class="ml-2 text-gray-700">Eon</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="filter-checkbox h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary">
+                                    <span class="ml-2 text-gray-700">Titan</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <!-- Filter Group: Rating -->
+                        <div>
+                            <h3 class="text-xl font-semibold text-primary mb-4">Rating</h3>
+                            <div class="space-y-2">
+                                <label class="flex items-center">
+                                    <input type="radio" name="rating" class="filter-radio h-4 w-4 text-primary border-gray-300 focus:ring-primary">
+                                    <span class="ml-2 flex items-center text-gray-700">
+                                        <!-- 4 Stars -->
+                                        <svg class="w-4 h-4 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                        <svg class="w-4 h-4 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                        <svg class="w-4 h-4 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                        <svg class="w-4 h-4 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                        <svg class="w-4 h-4 text-gray-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                        <span class="ml-1.5">& Up</span>
+                                    </span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="radio" name="rating" class="filter-radio h-4 w-4 text-primary border-gray-300 focus:ring-primary">
+                                    <span class="ml-2 flex items-center text-gray-700">
+                                        <!-- 3 Stars -->
+                                        <svg class="w-4 h-4 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                        <svg class="w-4 h-4 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                        <svg class="w-4 h-4 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                        <svg class="w-4 h-4 text-gray-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                        <svg class="w-4 h-4 text-gray-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                        <span class="ml-1.5">& Up</span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Filter Group: Availability -->
+                        <div>
+                            <h3 class="text-xl font-semibold text-primary mb-4">Availability</h3>
+                            <div class="space-y-2">
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="filter-checkbox h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary">
+                                    <span class="ml-2 text-gray-700">In Stock</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="filter-checkbox h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary">
+                                    <span class="ml-2 text-gray-700">Out of Stock</span>
+                                </label>
+                            </div>
+                        </div>
+
+                    </div>
+                </aside>
+
+                <!-- 
+                  Product Grid (based on components.product_card)
+                -->
+                <section class="w-full lg:w-3/4 xl:w-4/5">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 md:gap-8">
+                        
+                        <!-- Product Card 1 -->
+                        <div class="bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl group">
+                            <div class="relative">
+                                <img src="https://placehold.co/600x600/F2F4F8/1E1E1E?text=Smart+Drone" alt="Aura Smart Drone X1" class="w-full h-56 object-cover" onerror="this.src='https://placehold.co/600x600/F2F4F8/1E1E1E?text=Image+Error'">
+                                <button aria-label="Quick View" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white/90 text-sm font-semibold px-4 py-2 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300" style="font-family: var(--font-body);">Quick View</button>
+                            </div>
+                            <div class="p-5">
+                                <h3 class="text-lg font-semibold truncate text-neutral-dark" style="font-family: var(--font-heading);">Aura Smart Drone X1</h3>
+                                <div class="flex items-center my-2">
+                                    <div class="flex items-center">
+                                        <svg class="w-4 h-4 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                        <svg class="w-4 h-4 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                        <svg class="w-4 h-4 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                        <svg class="w-4 h-4 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                        <svg class="w-4 h-4 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27V2z"/></svg>
+                                    </div>
+                                    <span class="text-xs text-gray-500 ml-2">(82 reviews)</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-xl font-bold text-primary" style="font-family: var(--font-heading);">$499.99</span>
+                                    <button aria-label="Add to wishlist" class="text-gray-400 hover:text-red-500 transition-colors"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 016.364 0L12 7.636l1.318-1.318a4.5 4.5 0 016.364 6.364L12 20.364l-7.682-7.682a4.5 4.5 0 010-6.364z"></path></svg></button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Product Card 2 -->
+                        <div class="bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl group">
+                            <div class="relative">
+                                <img src="https://placehold.co/600x600/F2F4F8/1E1E1E?text=Smart+Speaker" alt="Nebula Smart Speaker" class="w-full h-56 object-cover" onerror="this.src='https://placehold.co/600x600/F2F4F8/1E1E1E?text=Image+Error'">
+                                <button aria-label="Quick View" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white/90 text-sm font-semibold px-4 py-2 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300" style="font-family: var(--font-body);">Quick View</button>
+                            </div>
+                            <div class="p-5">
+                                <h3 class="text-lg font-semibold truncate text-neutral-dark" style="font-family: var(--font-heading);">Nebula Smart Speaker</h3>
+                                <div class="flex items-center my-2">
+                                    <div class="flex items-center">
+                                        <!-- Stars... -->
+                                        <svg class="w-4 h-4 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                        <svg class="w-4 h-4 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                        <svg class="w-4 h-4 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                        <svg class="w-4 h-4 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                        <svg class="w-4 h-4 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                    </div>
+                                    <span class="text-xs text-gray-500 ml-2">(212 reviews)</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-xl font-bold text-primary" style="font-family: var(--font-heading);">$129.00</span>
+                                    <button aria-label="Add to wishlist" class="text-gray-400 hover:text-red-500 transition-colors"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 016.364 0L12 7.636l1.318-1.318a4.5 4.5 0 016.364 6.364L12 20.364l-7.682-7.682a4.5 4.5 0 010-6.364z"></path></svg></button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Product Card 3 -->
+                        <div class="bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl group">
+                            <div class="relative">
+                                <img src="https://placehold.co/600x600/F2F4F8/1E1E1E?text=VR+Headset" alt="Eon VR Headset Pro" class="w-full h-56 object-cover" onerror="this.src='https://placehold.co/600x600/F2F4F8/1E1E1E?text=Image+Error'">
+                                <button aria-label="Quick View" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white/90 text-sm font-semibold px-4 py-2 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300" style="font-family: var(--font-body);">Quick View</button>
+                            </div>
+                            <div class="p-5">
+                                <h3 class="text-lg font-semibold truncate text-neutral-dark" style="font-family: var(--font-heading);">Eon VR Headset Pro</h3>
+                                <div class="flex items-center my-2">
+                                    <div class="flex items-center">
+                                        <!-- Stars... -->
+                                        <svg class="w-4 h-4 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                        <svg class="w-4 h-4 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                        <svg class="w-4 h-4 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                        <svg class="w-4 h-4 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                        <svg class="w-4 h-4 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27V2z"/></svg>
+                                    </div>
+                                    <span class="text-xs text-gray-500 ml-2">(130 reviews)</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-xl font-bold text-primary" style="font-family: var(--font-heading);">$399.00</span>
+                                    <button aria-label="Add to wishlist" class="text-gray-400 hover:text-red-500 transition-colors"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 016.364 0L12 7.636l1.318-1.318a4.5 4.5 0 016.364 6.364L12 20.364l-7.682-7.682a4.5 4.5 0 010-6.364z"></path></svg></button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Product Card 4 -->
+                        <div class="bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl group">
+                            <div class="relative">
+                                <img src="https://placehold.co/600x600/F2F4F8/1E1E1E?text=PowerBank" alt="Titan PowerBank 20K" class="w-full h-56 object-cover" onerror="this.src='https://placehold.co/600x600/F2F4F8/1E1E1E?text=Image+Error'">
+                                <button aria-label="Quick View" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white/90 text-sm font-semibold px-4 py-2 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300" style="font-family: var(--font-body);">Quick View</button>
+                            </div>
+                            <div class="p-5">
+                                <h3 class="text-lg font-semibold truncate text-neutral-dark" style="font-family: var(--font-heading);">Titan PowerBank 20K</h3>
+                                <div class="flex items-center my-2">
+                                    <div class="flex items-center">
+                                        <!-- Stars... -->
+                                        <svg class="w-4 h-4 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                        <svg class="w-4 h-4 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                        <svg class="w-4 h-4 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                        <svg class="w-4 h-4 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                        <svg class="w-4 h-4 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                    </div>
+                                    <span class="text-xs text-gray-500 ml-2">(450 reviews)</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-xl font-bold text-primary" style="font-family: var(--font-heading);">$59.99</span>
+                                    <button aria-label="Add to wishlist" class="text-gray-400 hover:text-red-500 transition-colors"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 016.364 0L12 7.636l1.318-1.318a4.5 4.5 0 016.364 6.364L12 20.364l-7.682-7.682a4.5 4.5 0 010-6.364z"></path></svg></button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Product Card 5 -->
+                        <div class="bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl group">
+                            <div class="relative">
+                                <img src="https://placehold.co/600x600/F2F4F8/1E1E1E?text=Smart+Watch" alt="Aura Watch S3" class="w-full h-56 object-cover" onerror="this.src='https://placehold.co/600x600/F2F4F8/1E1E1E?text=Image+Error'">
+                                <button aria-label="Quick View" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white/90 text-sm font-semibold px-4 py-2 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300" style="font-family: var(--font-body);">Quick View</button>
+                            </div>
+                            <div class="p-5">
+                                <h3 class="text-lg font-semibold truncate text-neutral-dark" style="font-family: var(--font-heading);">Aura Watch S3</h3>
+                                <div class="flex items-center my-2">
+                                    <div class="flex items-center">
+                                        <!-- Stars... -->
+                                        <svg class="w-4 h-4 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                        <svg class="w-4 h-4 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                        <svg class="w-4 h-4 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                        <svg class="w-4 h-4 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                        <svg class="w-4 h-4 text-gray-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                    </div>
+                                    <span class="text-xs text-gray-500 ml-2">(310 reviews)</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-xl font-bold text-primary" style="font-family: var(--font-heading);">$249.99</span>
+                                    <button aria-label="Add to wishlist" class="text-gray-400 hover:text-red-500 transition-colors"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 016.364 0L12 7.636l1.318-1.318a4.5 4.5 0 016.364 6.364L12 20.364l-7.682-7.682a4.5 4.5 0 010-6.364z"></path></svg></button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Product Card 6 -->
+                        <div class="bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl group">
+                            <div class="relative">
+                                <img src="https://placehold.co/600x600/F2F4F8/1E1E1E?text=Earbuds" alt="Nebula Buds Pro" class="w-full h-56 object-cover" onerror="this.src='https://placehold.co/600x600/F2F4F8/1E1E1E?text=Image+Error'">
+                                <button aria-label="Quick View" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white/90 text-sm font-semibold px-4 py-2 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300" style="font-family: var(--font-body);">Quick View</button>
+                            </div>
+                            <div class="p-5">
+                                <h3 class="text-lg font-semibold truncate text-neutral-dark" style="font-family: var(--font-heading);">Nebula Buds Pro</h3>
+                                <div class="flex items-center my-2">
+                                    <div class="flex items-center">
+                                        <!-- Stars... -->
+                                        <svg class="w-4 h-4 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                        <svg class="w-4 h-4 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                        <svg class="w-4 h-4 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                        <svg class="w-4 h-4 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                        <svg class="w-4 h-4 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27V2z"/></svg>
+                                    </div>
+                                    <span class="text-xs text-gray-500 ml-2">(512 reviews)</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-xl font-bold text-primary" style="font-family: var(--font-heading);">$149.00</span>
+                                    <button aria-label="Add to wishlist" class="text-gray-400 hover:text-red-500 transition-colors"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 016.364 0L12 7.636l1.318-1.318a4.5 4.5 0 016.364 6.364L12 20.364l-7.682-7.682a4.5 4.5 0 010-6.364z"></path></svg></button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Pagination -->
+                    <nav class="mt-12 flex justify-center items-center" aria-label="Pagination">
+                        <a href="#" class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+                            <!-- Prev Icon -->
+                            <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                        <a href="#" aria-current="page" class="z-10 bg-accent border-accent text-primary relative inline-flex items-center px-4 py-2 border text-sm font-medium">
+                            1
+                        </a>
+                        <a href="#" class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium">
+                            2
+                        </a>
+                        <a href="#" class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 hidden md:inline-flex items-center px-4 py-2 border text-sm font-medium">
+                            3
+                        </a>
+                        <span class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700">
+                            ...
+                        </span>
+                        <a href="#" class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-2 py-2 rounded-r-md border text-sm font-medium">
+                            <!-- Next Icon -->
+                            <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                    </nav>
+
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <!-- 
+      Footer (Copied from homepage)
+    -->
+    <footer class="pt-16 pb-8 bg-neutral-dark" style="color: #a0aec0; font-family: var(--font-body);">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8">
+          
+          <!-- Logo & Social -->
+          <div class="col-span-2 lg:col-span-2">
+             <div class="flex items-center mb-4">
+               <!-- Footer Logo -->
+               <svg class="w-8 h-8" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="20" cy="20" r="18" fill="var(--color-accent)"/>
+                <path d="M20 13.333V20H26.667M20 20L15.417 29.167L10.833 20L15.417 10.833L20 20Z" stroke="var(--color-primary)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M20 20L24.583 29.167L29.167 20L24.583 10.833L20 20Z" stroke="var(--color-primary)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span class="text-white text-2xl ml-3" style="font-family: var(--font-heading);">
+                Gearvaly
+              </span>
+            </div>
+            <p class="text-sm max-w-xs mb-6">Smart Gear. Smarter Living.</p>
+            <!-- Social Icons -->
+            <div class="flex space-x-5">
+              <a href="#" aria-label="Facebook" class="hover:text-white">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z" /></svg>
+              </a>
+              <a href="#" aria-label="Twitter" class="hover:text-white">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-.422.724-.665 1.565-.665 2.455 0 1.638.835 3.089 2.103 3.936-.775-.024-1.503-.237-2.143-.593v.064c0 2.288 1.627 4.195 3.784 4.633-.394.107-.808.164-1.234.164-.304 0-.598-.03-.886-.084.603 1.874 2.348 3.238 4.418 3.276-1.616 1.268-3.647 2.025-5.858 2.025-.38 0-.755-.022-1.124-.067 2.089 1.349 4.575 2.13 7.24 2.13 8.688 0 13.44-7.22 13.44-13.44 0-.204-.005-.407-.014-.61a9.619 9.619 0 002.354-2.441z" /></svg>
+              </a>
+              <a href="#" aria-label="Instagram" class="hover:text-white">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.148 3.225-1.664 4.771-4.919 4.919-1.266.058-1.646.07-4.85.07-3.204 0-3.584-.012-4.85-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.646-.07-4.85s.012-3.584.07-4.85c.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.646-.07 4.85-.07zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948s.014 3.667.072 4.947c.2 4.358 2.618 6.78 6.98 6.98 1.281.059 1.689.073 4.948.073s3.667-.014 4.947-.072c4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948s-.014-3.667-.072-4.947c-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.948-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44 1.441-.645 1.441-1.44c0-.795-.645-1.44-1.441-1.44z" /></svg>
+              </a>
+            </div>
+          </div>
+          
+          <!-- Link Columns -->
+          <div>
+            <h4 class="text-white text-lg font-semibold mb-4" style="font-family: var(--font-heading);">Company</h4>
+            <ul class="space-y-3">
+              <li><a href="/about" class="hover:text-white transition-colors">About</a></li>
+              <li><a href="/blog" class="hover:text-white transition-colors">Blog</a></li>
+              <li><a href="/careers" class="hover:text-white transition-colors">Careers</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-white text-lg font-semibold mb-4" style="font-family: var(--font-heading);">Support</h4>
+            <ul class="space-y-3">
+              <li><a href="/faq" class="hover:text-white transition-colors">FAQ</a></li>
+              <li><a href="/shipping" class="hover:text-white transition-colors">Shipping</a></li>
+              <li><a href="/returns" class="hover:text-white transition-colors">Returns</a></li>
+              <li><a href="/contact" class="hover:text-white transition-colors">Contact Us</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-white text-lg font-semibold mb-4" style="font-family: var(--font-heading);">Legal</h4>
+            <ul class="space-y-3">
+              <li><a href="/privacy" class="hover:text-white transition-colors">Privacy Policy</a></li>
+              <li><a href="/terms" class="hover:text-white transition-colors">Terms of Service</a></li>
+            </ul>
+          </div>
+
+        </div>
+
+        <!-- Copyright -->
+        <div class="mt-12 pt-8 border-t border-gray-700 text-center text-sm">
+          <p>&copy; 2024 Gearvaly. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- 
+      JavaScript for Interactivity 
+    -->
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        // --- Homepage Mobile Menu Script ---
+        const openBtn = document.getElementById('mobile-menu-open-btn');
+        const closeBtn = document.getElementById('mobile-menu-close-btn');
+        const overlay = document.getElementById('mobile-menu-overlay');
+        const panel = document.getElementById('mobile-menu-panel');
+
+        if (openBtn && closeBtn && overlay && panel) {
+            const openMenu = () => {
+              overlay.classList.remove('hidden');
+              panel.classList.remove('translate-x-full');
+              document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            };
+
+            const closeMenu = () => {
+              overlay.classList.add('hidden');
+              panel.classList.add('translate-x-full');
+              document.body.style.overflow = ''; // Restore scrolling
+            };
+
+            openBtn.addEventListener('click', openMenu);
+            closeBtn.addEventListener('click', closeMenu);
+            overlay.addEventListener('click', closeMenu);
+        }
+
+        // --- Shop Page Filter Toggle Script ---
+        const filterBtn = document.getElementById('filter-toggle-btn');
+        const filterSidebar = document.getElementById('filter-sidebar');
+
+        if (filterBtn && filterSidebar) {
+            filterBtn.addEventListener('click', () => {
+                filterSidebar.classList.toggle('hidden');
+            });
+        }
+
+        // --- Price Range Slider Script ---
+        const priceSlider = document.getElementById('price-range-slider');
+        const priceValue = document.getElementById('price-range-value');
+
+        if (priceSlider && priceValue) {
+            // Set initial value on load
+            let initialValue = priceSlider.value;
+            if (initialValue === "1000") {
+                priceValue.textContent = `$1,000+`;
+            } else {
+                priceValue.textContent = `$${initialValue}`;
+            }
+
+            // Add event listener for changes
+            priceSlider.addEventListener('input', (event) => {
+                const value = event.target.value;
+                if (value === "1000") {
+                    priceValue.textContent = `$1,000+`;
+                } else {
+                    priceValue.textContent = `$${value}`;
+                }
+            });
+        }
+      });
+    </script>
+</body>
+</html>
+

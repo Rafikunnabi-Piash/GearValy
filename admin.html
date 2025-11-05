@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gearvaly - Smart Gear. Smarter Living.</title>
+    
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Load Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Custom Styles -->
+    <style>
+        :root {
+            /* Brand colors from your brief */
+            --color-primary: #0A2342;
+            --color-accent: #00D4FF;
+            --color-neutral-light: #F2F4F8;
+            --color-neutral-dark: #1E1E1E;
+
+            /* Font stacks from your brief */
+            --font-heading: "Montserrat", system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+            --font-body: "Poppins", system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+        }
+
+        /* Apply base fonts */
+        body {
+            font-family: var(--font-body);
+            color: var(--color-neutral-dark);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Apply heading font */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
+        }
+
+        /* Utility class for primary color */
+        .bg-primary { background-color: var(--color-primary); }
+        .text-primary { color: var(--color-primary); }
+        .border-primary { border-color: var(--color-primary); }
+        
+        /* Utility class for accent color */
+        .bg-accent { background-color: var(--color-accent); }
+        .text-accent { color: var(--color-accent); }
+        .border-accent { border-color: var(--color-accent); }
+
+        /* Utility class for light neutral */
+        .bg-neutral-light { background-color: var(--color-neutral-light); }
+        
+        /* Utility class for dark neutral */
+        .bg-neutral-dark { background-color: var(--color-neutral-dark); }
+        .text-neutral-dark { color: var(--color-neutral-dark); }
+    </style>
+</head>
+<body class="bg-white">
+
+    <!-- 
+      Header (based on components.header) 
+      Includes JavaScript interactivity for mobile menu
+    -->
+    <header class="sticky top-0 z-50 shadow-md bg-primary" style="font-family: var(--font-body);">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-20">
+          
+          <!-- Logo -->
+          <a href="/" class="flex-shrink-0 flex items-center">
+            <!-- Gearvaly Logo SVG -->
+            <svg class="w-8 h-8" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="20" cy="20" r="18" fill="var(--color-accent)"/>
+              <path d="M20 13.333V20H26.667M20 20L15.417 29.167L10.833 20L15.417 10.833L20 20Z" stroke="var(--color-primary)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M20 20L24.583 29.167L29.167 20L24.583 10.833L20 20Z" stroke="var(--color-primary)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span class="text-white text-2xl ml-3" style="font-family: var(--font-heading);">
+              Gearvaly
+            </span>
+          </a>
+
+          <!-- Desktop Search & Nav -->
+          <div class="hidden lg:flex lg:flex-1 lg:items-center lg:justify-center lg:space-x-8">
+            <!-- Search Bar -->
+            <div class="relative w-full max-w-lg">
+              <input
+                type="search"
+                placeholder="Search products..."
+                class="w-full bg-white/20 text-white placeholder-gray-300 rounded-full py-2.5 px-5 leading-tight focus:outline-none focus:ring-2"
+                style="border-color: var(--color-accent); ring-color: var(--color-accent);"
+              />
+              <div class="absolute right-0 top-0 mt-2.5 mr-4">
+                <!-- Search Icon -->
+                <svg class="text-gray-300 w-5 h-5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              </div>
+            </div>
+            
+            <!-- Categories Dropdown -->
+            <nav class="flex space-x-6">
+              <a href="/categories/gadgets" class="text-gray-300 hover:text-white transition-colors">Gadgets</a>
+              <a href="/categories/smart-home" class="text-gray-300 hover:text-white transition-colors">Smart Home</a>
+              <a href="/categories/audio" class="text-gray-300 hover:text-white transition-colors">Audio</a>
+              <a href="/categories/accessories" class="text-gray-300 hover:text-white transition-colors">Accessories</a>
+            </nav>
+          </div>
+
+          <!-- Icons (Desktop) -->
+          <div class="hidden lg:flex items-center space-x-6">
+            <a href="/account" aria-label="My Account" class="text-gray-300 hover:text-white transition-colors">
+              <!-- User Icon -->
+              <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+            </a>
+            <a href="/cart" aria-label="My Cart" class="relative text-gray-300 hover:text-white transition-colors">
+              <!-- Shopping Cart Icon -->
+              <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+              <span 
+                class="absolute -top-2 -right-2 w-5 h-5 rounded-full text-xs font-bold flex items-center justify-center bg-accent text-primary">
+                3
+              </span>
+            </a>
+          </div>
+
+          <!-- Mobile Menu Button -->
+          <div class="lg:hidden">
+            <button 
+              id="mobile-menu-open-btn"
+              aria-label="Open menu" 
+              class="text-gray-300 hover:text-white"
+            >
+              <!-- Menu Icon -->
+              <svg class="w-7 h-7" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile Menu -->
+      <!-- Overlay -->
+      <div 
+        id="mobile-menu-overlay"
+        class="fixed inset-0 z-50 bg-black/50 transition-opacity duration-300 lg:hidden hidden"
+      ></div>
+      
+      <!-- Panel -->
+      <div 
+        id="mobile-menu-panel"
+        class="fixed top-0 right-0 h-full w-4/5 max-w-sm shadow-xl transition-transform duration-300 transform translate-x-full bg-primary lg:hidden"
+      >
+        <div class="flex justify-between items-center p-6 border-b" style="border-color: rgba(255,255,255,0.1);">
+          <span class="text-white text-xl" style="font-family: var(--font-heading);">Menu</span>
+          <button id="mobile-menu-close-btn" aria-label="Close menu" class="text-gray-300 hover:text-white">
+            <!-- X Icon -->
+            <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          </button>
+        </div>
+        <div class="p-6">
+          <!-- Mobile Search -->
+          <div class="relative mb-6">
+            <input
+              type="search"
+              placeholder="Search products..."
+              class="w-full bg-white/20 text-white placeholder-gray-300 rounded-full py-2.5 px-5 leading-tight focus:outline-none focus:ring-2"
+              style="border-color: var(--color-accent); ring-color: var(--color-accent);"
+            />
+            <div class="absolute right-0 top-0 mt-2.5 mr-4">
+              <!-- Search Icon -->
+              <svg class="text-gray-300 w-5 h-5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            </div>
+          </div>
+          
+          <!-- Mobile Nav -->
+          <nav class="flex flex-col space-y-4 mb-6">
+            <a href="/categories/gadgets" class="text-gray-200 hover:text-white text-lg py-2">Gadgets</a>
+            <a href="/categories/smart-home" class="text-gray-200 hover:text-white text-lg py-2">Smart Home</a>
+            <a href="/categories/audio" class="text-gray-200 hover:text-white text-lg py-2">Audio</a>
+            <a href="/categories/accessories" class="text-gray-200 hover:text-white text-lg py-2">Accessories</a>
+          </nav>
+
+          <!-- Mobile Icons/Actions -->
+          <div class="flex flex-col space-y-4 border-t pt-6" style="border-color: rgba(255,255,255,0.1);">
+             <a href="/account" class="flex items-center text-gray-200 hover:text-white text-lg py-2">
+               <!-- User Icon -->
+               <svg class="w-6 h-6 mr-3" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+               My Account
+             </a>
+             <a href="/cart" class="flex items-center text-gray-200 hover:text-white text-lg py-2">
+               <!-- Shopping Cart Icon -->
+               <svg class="w-6 h-6 mr-3" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+               My Cart (3)
+             </a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+        <!-- 
+          Hero (based on pages["/"].sections[0])
+        -->
+        <section class="py-24 sm:py-32 bg-primary text-white" style="font-family: var(--font-body);">
+          <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 
+              class="text-4xl md:text-6xl font-extrabold tracking-tight" 
+              style="font-family: var(--font-heading);"
+            >
+              Smart Gear. Smarter Living.
+            </h1>
+            <p class="mt-6 text-lg md:text-xl max-w-2xl mx-auto text-gray-300">
+              Top electronics, gadgets and smart home devices — curated and delivered.
+            </p>
+            <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+              <a
+                href="/collections/featured"
+                class="px-8 py-3.5 text-lg font-semibold rounded-full shadow-lg transition-all duration-300 transform hover:scale-105 bg-accent text-primary"
+              >
+                Shop Now
+              </a>
+              <a
+                href="/categories"
+                class="px-8 py-3.5 text-lg font-semibold rounded-full transition-all duration-300 border-2 hover:bg-white/10 border-accent text-accent"
+              >
+                Explore Categories
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <!-- 
+          Featured Product (New Section)
+        -->
+        <section class="py-16 sm:py-24 bg-white">
+          <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+              
+              <!-- Product Gallery -->
+              <div>
+                <div class="relative">
+                  <img 
+                    id="main-product-image"
+                    src="https://placehold.co/800x800/F2F4F8/1E1E1E?text=Featured+Product" 
+                    alt="Main product view" 
+                    class="w-full rounded-lg shadow-lg object-cover"
+                  />
+                </div>
+                <div class="grid grid-cols-4 gap-4 mt-4">
+                  <!-- Thumbnail 1 -->
+                  <button class="product-thumbnail rounded-lg overflow-hidden border-2 border-accent" data-image="https://placehold.co/800x800/F2F4F8/1E1E1E?text=Featured+Product">
+                    <img src="https://placehold.co/200x200/F2F4F8/1E1E1E?text=View+1" alt="Thumbnail 1" class="w-full h-full object-cover">
+                  </button>
+                  <!-- Thumbnail 2 -->
+                  <button class="product-thumbnail rounded-lg overflow-hidden border-2 border-transparent hover:border-accent" data-image="https://placehold.co/800x800/E0E0E0/1E1E1E?text=View+2">
+                    <img src="https://placehold.co/200x200/E0E0E0/1E1E1E?text=View+2" alt="Thumbnail 2" class="w-full h-full object-cover">
+                  </button>
+                  <!-- Thumbnail 3 -->
+                  <button class="product-thumbnail rounded-lg overflow-hidden border-2 border-transparent hover:border-accent" data-image="https://placehold.co/800x800/D0D0D0/1E1E1E?text=View+3">
+                    <img src="https://placehold.co/200x200/D0D0D0/1E1E1E?text=View+3" alt="Thumbnail 3" class="w-full h-full object-cover">
+                  </button>
+                  <!-- Thumbnail 4 -->
+                  <button class="product-thumbnail rounded-lg overflow-hidden border-2 border-transparent hover:border-accent" data-image="https://placehold.co/800x800/C0C0C0/1E1E1E?text=View+4">
+                    <img src="https://placehold.co/200x200/C0C0C0/1E1E1E?text=View+4" alt="Thumbnail 4" class="w-full h-full object-cover">
+                  </button>
+                </div>
+              </div>
+
+              <!-- Product Details & Description -->
+              <div>
+                <h2 class="text-3xl md:text-4xl font-bold text-primary" style="font-family: var(--font-heading);">
+                  Featured: The Nebula Smart Speaker
+                </h2>
+                <span class="text-3xl font-bold text-primary mt-4 block" style="font-family: var(--font-heading);">$129.00</span>
+                
+                <p class="text-gray-600 mt-4 text-lg">
+                  Experience 360° immersive sound and intelligent voice control. The Nebula speaker integrates seamlessly with your smart home.
+                </p>
+
+                <!-- Variants -->
+                <div class="mt-6">
+                  <h4 class="text-sm font-medium text-gray-900">Color</h4>
+                  <div class="flex items-center space-x-3 mt-2">
+                    <button class="w-8 h-8 rounded-full bg-gray-900 border-2 border-accent ring-2 ring-accent" aria-label="Black"></button>
+                    <button class="w-8 h-8 rounded-full bg-gray-200 border-2 border-gray-300 hover:border-accent" aria-label="Silver"></button>
+                    <button class="w-8 h-8 rounded-full bg-blue-900 border-2 border-blue-900 hover:border-accent" aria-label="Midnight Blue"></button>
+                  </div>
+                </div>
+
+                <!-- Quantity & Add to Cart -->
+                <div class="mt-8 flex items-center gap-4">
+                  <div class="relative">
+                    <label for="quantity" class="sr-only">Quantity</label>
+                    <select id="quantity" class="appearance-none w-24 px-4 py-3 border border-gray-300 rounded-full font-semibold text-center focus:outline-none focus:ring-2 focus:ring-primary">
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5</option>
+                    </select>
+                    <svg class="w-5 h-5 text-gray-400 absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+                  </div>
+                  <button
+                    type="submit"
+                    class="flex-1 px-8 py-3.5 text-lg font-semibold rounded-full shadow-lg transition-all duration-300 transform hover:scale-105 bg-accent text-primary"
+                  >
+                    Add to Cart
+                  </button>
+                </div>
+
+                <!-- Product Description Section -->
+                <div class="mt-10 border-t pt-8">
+                  <h3 class="text-xl font-semibold text-primary mb-4" style="font-family: var(--font-heading);">
+                    Product Description
+                  </h3>
+                  <p class="text-gray-600 mb-4">
+                    The Nebula Smart Speaker is engineered for audio perfection. Its custom-built drivers and tweeters deliver crisp highs and deep, rich bass that fill any room.
+                  </p>
+                  <p class="text-gray-600 mb-4">
+                    Connect all your devices via Wi-Fi or Bluetooth, and use your voice to control music, check the weather, or manage your smart home devices. Fully compatible with Google Assistant and Amazon Alexa.
+                  </p>
+                  <ul class="list-disc list-inside text-gray-600 space-y-2">
+                    <li>360-degree high-fidelity audio</li>
+                    <li>Multi-room speaker support</li>
+                    <li>Built-in voice assistant</li>
+                    <li>Durable, premium-finish fabric</li>
+                  </ul>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+        <!-- 
+          How It Works (based on pages["/"].sections[3])
+        -->
+        <section class="py-16 sm:py-24 bg-neutral-light">
+          <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 text-center">
+              
+              <!-- Step 1 -->
+              <div class="relative">
+                <!-- Dashed line (visible on desktop) -->
+                <div 
+                  class="hidden md:block absolute top-1/2 left-full -translate-y-1/2 w-full"
+                  style="
+                    border-top: 2px dashed var(--color-primary);
+                    opacity: 0.3;
+                    margin-left: 2rem;
+                    margin-right: 2rem;
+                    width: calc(100% - 4rem);
+                  "
+                ></div>
+                <div 
+                  class="w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-6 bg-accent text-primary"
+                  style="font-family: var(--font-heading);"
+                >
+                  1
+                </div>
+                <h3 
+                  class="text-2xl font-semibold mb-3 text-primary" 
+                  style="font-family: var(--font-heading);"
+                >
+                  Discover
+                </h3>
+                <p class="text-gray-600" style="font-family: var(--font-body);">
+                  Find curated, high-quality gear.
+                </p>
+              </div>
+              
+              <!-- Step 2 -->
+              <div class="relative">
+                <!-- Dashed line (visible on desktop) -->
+                <div 
+                  class="hidden md:block absolute top-1/2 left-full -translate-y-1/2 w-full"
+                  style="
+                    border-top: 2px dashed var(--color-primary);
+                    opacity: 0.3;
+                    margin-left: 2rem;
+                    margin-right: 2rem;
+                    width: calc(100% - 4rem);
+                  "
+                ></div>
+                <div 
+                  class="w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-6 bg-accent text-primary"
+                  style="font-family: var(--font-heading);"
+                >
+                  2
+                </div>
+                <h3 
+                  class="text-2xl font-semibold mb-3 text-primary" 
+                  style="font-family: var(--font-heading);"
+                >
+                  Buy
+                </h3>
+                <p class="text-gray-600" style="font-family: var(--font-body);">
+                  Fast checkout and secure payments.
+                </p>
+              </div>
+              
+              <!-- Step 3 -->
+              <div class="relative">
+                <div 
+                  class="w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-6 bg-accent text-primary"
+                  style="font-family: var(--font-heading);"
+                >
+                  3
+                </div>
+                <h3 
+                  class="text-2xl font-semibold mb-3 text-primary" 
+                  style="font-family: var(--font-heading);"
+                >
+                  Enjoy
+                </h3>
+                <p class="text-gray-600" style="font-family: var(--font-body);">
+                  Fast delivery and trusted support.
+                </p>
+              </div>
+              
+            </div>
+          </div>
+        </section>
+
+        <!-- 
+          Newsletter CTA (based on pages["/"].sections[4])
+        -->
+        <section class="py-16 sm:py-24 bg-primary">
+          <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-2xl mx-auto text-center">
+              <h2 
+                class="text-3xl md:text-4xl font-bold text-white mb-4" 
+                style="font-family: var(--font-heading);"
+              >
+                Get exclusive launch deals
+              </h2>
+              <p class="text-gray-300 mb-8" style="font-family: var(--font-body);">
+                Join our list and be the first to know about new products and special offers.
+              </p>
+              <form class="flex flex-col sm:flex-row max-w-md mx-auto gap-3">
+                <label for="email-newsletter" class="sr-only">Enter your email</label>
+                <input
+                  type="email"
+                  id="email-newsletter"
+                  required
+                  placeholder="Enter your email"
+                  class="flex-grow w-full px-5 py-3.5 rounded-full text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2"
+                  style="font-family: var(--font-body); ring-color: var(--color-accent);"
+                />
+                <button
+                  type="submit"
+                  class="px-8 py-3.5 text-lg font-semibold rounded-full shadow-lg transition-all duration-300 transform hover:scale-105 bg-accent text-primary"
+                  style="font-family: var(--font-body);"
+                >
+                  Subscribe
+                </button>
+              </form>
+            </div>
+          </div>
+        </section>
+    </main>
+
+    <!-- 
+      Footer (based on components.footer)
+    -->
+    <footer class="pt-16 pb-8 bg-neutral-dark" style="color: #a0aec0; font-family: var(--font-body);">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8">
+          
+          <!-- Logo & Social -->
+          <div class="col-span-2 lg:col-span-2">
+             <div class="flex items-center mb-4">
+               <!-- Footer Logo -->
+               <svg class="w-8 h-8" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="20" cy="20" r="18" fill="var(--color-accent)"/>
+                <path d="M20 13.333V20H26.667M20 20L15.417 29.167L10.833 20L15.417 10.833L20 20Z" stroke="var(--color-primary)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M20 20L24.583 29.167L29.167 20L24.583 10.833L20 20Z" stroke="var(--color-primary)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span class="text-white text-2xl ml-3" style="font-family: var(--font-heading);">
+                Gearvaly
+              </span>
+            </div>
+            <p class="text-sm max-w-xs mb-6">Smart Gear. Smarter Living.</p>
+            <!-- Social Icons -->
+            <div class="flex space-x-5">
+              <a href="#" aria-label="Facebook" class="hover:text-white">
+                <!-- Facebook Icon -->
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z" /></svg>
+              </a>
+              <a href="#" aria-label="Twitter" class="hover:text-white">
+                <!-- Twitter Icon -->
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-.422.724-.665 1.565-.665 2.455 0 1.638.835 3.089 2.103 3.936-.775-.024-1.503-.237-2.143-.593v.064c0 2.288 1.627 4.195 3.784 4.633-.394.107-.808.164-1.234.164-.304 0-.598-.03-.886-.084.603 1.874 2.348 3.238 4.418 3.276-1.616 1.268-3.647 2.025-5.858 2.025-.38 0-.755-.022-1.124-.067 2.089 1.349 4.575 2.13 7.24 2.13 8.688 0 13.44-7.22 13.44-13.44 0-.204-.005-.407-.014-.61a9.619 9.619 0 002.354-2.441z" /></svg>
+              </a>
+              <a href="#" aria-label="Instagram" class="hover:text-white">
+                <!-- Instagram Icon -->
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.148 3.225-1.664 4.771-4.919 4.919-1.266.058-1.646.07-4.85.07-3.204 0-3.584-.012-4.85-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.646-.07-4.85s.012-3.584.07-4.85c.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.646-.07 4.85-.07zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948s.014 3.667.072 4.947c.2 4.358 2.618 6.78 6.98 6.98 1.281.059 1.689.073 4.948.073s3.667-.014 4.947-.072c4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948s-.014-3.667-.072-4.947c-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.948-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44 1.441-.645 1.441-1.44c0-.795-.645-1.44-1.441-1.44z" /></svg>
+              </a>
+            </div>
+          </div>
+          
+          <!-- Link Column 1: Company -->
+          <div>
+            <h4 
+              class="text-white text-lg font-semibold mb-4" 
+              style="font-family: var(--font-heading);"
+            >
+              Company
+            </h4>
+            <ul class="space-y-3">
+              <li><a href="/about" class="hover:text-white transition-colors">About</a></li>
+              <li><a href="/blog" class="hover:text-white transition-colors">Blog</a></li>
+              <li><a href="/careers" class="hover:text-white transition-colors">Careers</a></li>
+            </ul>
+          </div>
+          
+          <!-- Link Column 2: Support -->
+          <div>
+            <h4 
+              class="text-white text-lg font-semibold mb-4" 
+              style="font-family: var(--font-heading);"
+            >
+              Support
+            </h4>
+            <ul class="space-y-3">
+              <li><a href="/faq" class="hover:text-white transition-colors">FAQ</a></li>
+              <li><a href="/shipping" class="hover:text-white transition-colors">Shipping</a></li>
+              <li><a href="/returns" class="hover:text-white transition-colors">Returns</a></li>
+              <li><a href="/contact" class="hover:text-white transition-colors">Contact Us</a></li>
+            </ul>
+          </div>
+
+          <!-- Link Column 3: Legal -->
+          <div>
+            <h4 
+              class="text-white text-lg font-semibold mb-4" 
+              style="font-family: var(--font-heading);"
+            >
+              Legal
+            </h4>
+            <ul class="space-y-3">
+              <li><a href="/privacy" class="hover:text-white transition-colors">Privacy Policy</a></li>
+              <li><a href="/terms" class="hover:text-white transition-colors">Terms of Service</a></li>
+            </ul>
+          </div>
+
+        </div>
+
+        <!-- Copyright -->
+        <div class="mt-12 pt-8 border-t border-gray-700 text-center text-sm">
+          <p>&copy; 2024 Gearvaly. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- 
+      JavaScript for Mobile Menu Interactivity 
+    -->
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const openBtn = document.getElementById('mobile-menu-open-btn');
+        const closeBtn = document.getElementById('mobile-menu-close-btn');
+        const overlay = document.getElementById('mobile-menu-overlay');
+        const panel = document.getElementById('mobile-menu-panel');
+
+        const openMenu = () => {
+          overlay.classList.remove('hidden');
+          panel.classList.remove('translate-x-full');
+          document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        };
+
+        const closeMenu = () => {
+          overlay.classList.add('hidden');
+          panel.classList.add('translate-x-full');
+          document.body.style.overflow = ''; // Restore scrolling
+        };
+
+        openBtn.addEventListener('click', openMenu);
+        closeBtn.addEventListener('click', closeMenu);
+        overlay.addEventListener('click', closeMenu);
+
+        // --- Product Thumbnail Gallery Script ---
+        const mainImage = document.getElementById('main-product-image');
+        const thumbnails = document.querySelectorAll('.product-thumbnail');
+
+        if (mainImage && thumbnails.length > 0) {
+          thumbnails.forEach(thumb => {
+            thumb.addEventListener('click', () => {
+              // Set main image src
+              mainImage.src = thumb.dataset.image;
+
+              // Update border styles
+              thumbnails.forEach(t => {
+                t.classList.remove('border-accent');
+                t.classList.add('border-transparent');
+              });
+              thumb.classList.add('border-accent');
+              thumb.classList.remove('border-transparent');
+            });
+          });
+        }
+      });
+    </script>
+</body>
+</html>
+
